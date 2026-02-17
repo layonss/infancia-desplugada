@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Adicione isso logo no início do arquivo */
+html {
+  scroll-behavior: smooth !important;
+}
+
+/* 1. CONFIGURAÇÃO DO MODO ESCURO (Tailwind v4) */
+/* Ensina o Tailwind a ativar o modo dark quando a classe .dark existir no HTML */
+@variant dark (&:where(.dark, .dark *));
+
+/* 2. CONFIGURAÇÕES GLOBAIS */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  /* Removemos as cores fixas daqui para usar as classes do layout.tsx */
+}
