@@ -59,11 +59,10 @@ export default function Artigos() {
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               <button
                 onClick={() => setSelectedTag(null)}
-                className={`px-5 py-2 rounded-full text-xs font-bold transition-all border ${
-                  selectedTag === null
+                className={`px-5 py-2 rounded-full text-xs font-bold transition-all border ${selectedTag === null
                     ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/20 scale-105"
                     : "bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-500"
-                }`}
+                  }`}
               >
                 Todos
               </button>
@@ -71,11 +70,10 @@ export default function Artigos() {
                 <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
-                  className={`px-5 py-2 rounded-full text-xs font-bold transition-all border ${
-                    selectedTag === tag
+                  className={`px-5 py-2 rounded-full text-xs font-bold transition-all border ${selectedTag === tag
                       ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/20 scale-105"
                       : "bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-500"
-                  }`}
+                    }`}
                 >
                   {tag}
                 </button>

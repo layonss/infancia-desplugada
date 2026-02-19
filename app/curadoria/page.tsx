@@ -78,11 +78,10 @@ export default function Curadoria() {
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               <button
                 onClick={() => setSelectedCategory(null)}
-                className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
-                  selectedCategory === null
+                className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${selectedCategory === null
                     ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/20 scale-105"
                     : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
-                }`}
+                  }`}
               >
                 Todos
               </button>
@@ -91,11 +90,10 @@ export default function Curadoria() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
-                    selectedCategory === cat
+                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${selectedCategory === cat
                       ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/20 scale-105"
                       : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
-                  }`}
+                    }`}
                 >
                   {cat}
                 </button>
@@ -141,7 +139,7 @@ export default function Curadoria() {
                   <h3 className="text-xl font-bold mb-1 text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {recurso.titulo}
                   </h3>
-                  
+
                   <p className="text-xs font-bold text-slate-400 dark:text-slate-500 mb-4 uppercase tracking-tight">
                     {recurso.autor}
                   </p>
@@ -166,7 +164,7 @@ export default function Curadoria() {
             <div className="text-center py-20 bg-slate-50/50 dark:bg-slate-900/50 rounded-3xl border-2 border-dashed border-slate-200 dark:border-slate-800">
               <p className="text-slate-500 dark:text-slate-400 font-medium">Nenhum recurso encontrado.</p>
               <button
-                onClick={() => {setSelectedCategory(null); setSearchQuery("")}}
+                onClick={() => { setSelectedCategory(null); setSearchQuery("") }}
                 className="mt-4 text-indigo-600 dark:text-indigo-400 font-bold hover:underline"
               >
                 Limpar todos os filtros

@@ -29,7 +29,7 @@ export const equipe: Membro[] = [
     destaque: false,
   },
   // Adicione outros membros aqui se houver (ex: voluntários do GETEC)
-   {
+  {
     id: "3",
     nome: "Kamille Amaro",
     funcao: "Pesquisadora (Artigos)",

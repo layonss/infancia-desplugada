@@ -22,7 +22,7 @@ export default function ArtigoDetalhe({ params }: PageProps) {
   return (
     <article className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-500 pt-32 pb-24">
       <Container>
-        
+
         {/* Botão Voltar */}
         <FadeIn direction="down">
           <Link
@@ -37,7 +37,7 @@ export default function ArtigoDetalhe({ params }: PageProps) {
         </FadeIn>
 
         <div className="grid lg:grid-cols-3 gap-16 items-start">
-          
+
           {/* --- CONTEÚDO PRINCIPAL --- */}
           <div className="lg:col-span-2">
             <FadeIn>
@@ -49,7 +49,7 @@ export default function ArtigoDetalhe({ params }: PageProps) {
                     </span>
                   ))}
                 </div>
-                
+
                 <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-8 leading-tight">
                   {artigo.titulo}
                 </h1>
@@ -76,11 +76,11 @@ export default function ArtigoDetalhe({ params }: PageProps) {
                 <p className="text-lg md:text-xl text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line font-medium">
                   {artigo.conteudo}
                 </p>
-                
+
                 {/* Texto de preenchimento com cor corrigida */}
                 <div className="mt-8 space-y-6 text-slate-500 dark:text-slate-400 italic">
                   <p>
-                    O desenvolvimento deste artigo faz parte da investigação pedagógica sobre o uso de materiais tangíveis 
+                    O desenvolvimento deste artigo faz parte da investigação pedagógica sobre o uso de materiais tangíveis
                     no ensino da lógica, visando uma educação democrática e acessível.
                   </p>
                 </div>
@@ -93,7 +93,7 @@ export default function ArtigoDetalhe({ params }: PageProps) {
             <FadeIn delay={0.2} direction="left">
               <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
                 <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Autor do Artigo</h3>
-                
+
                 <div className="flex items-center space-x-4 mb-6">
                   <ScaleIn>
                     <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-indigo-500/30">
@@ -110,7 +110,7 @@ export default function ArtigoDetalhe({ params }: PageProps) {
                   Pesquisador focado em metodologias ativas e tecnologia desplugada na educação básica.
                 </p>
 
-                <Link 
+                <Link
                   href="/sobre"
                   className="block w-full text-center py-4 bg-slate-900 dark:bg-indigo-600 text-white font-black text-[10px] uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all"
                 >

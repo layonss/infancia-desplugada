@@ -42,15 +42,15 @@ export default function Praticas() {
 
         {/* --- ÁREA DE CONTROLE --- */}
         <div className="max-w-4xl mx-auto mb-16">
-          
+
           {/* 1. Barra de Busca */}
           <FadeIn delay={0.1}>
             <div className="relative max-w-lg mx-auto mb-8 group">
               <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                <svg 
-                  className="h-5 w-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
+                <svg
+                  className="h-5 w-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors"
+                  fill="none"
+                  viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -68,31 +68,55 @@ export default function Praticas() {
 
           {/* 2. Filtros de Ano */}
           <FadeIn delay={0.2} direction="up">
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              <button
-                onClick={() => setSelectedYear(null)}
-                className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
-                  selectedYear === null
-                    ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105"
-                    : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
-                }`}
-              >
-                Todos
-              </button>
+            {/* Container Flex Coluna para empilhar as duas linhas */}
+            <div className="flex flex-col items-center gap-3 mb-8">
 
-              {availableYears.map((year) => (
+              {/* --- LINHA DE CIMA (Todos + 1º ao 4º) --- */}
+              <div className="flex flex-wrap justify-center gap-3">
                 <button
-                  key={year}
-                  onClick={() => setSelectedYear(year)}
-                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
-                    selectedYear === year
+                  onClick={() => setSelectedYear(null)}
+                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${selectedYear === null
                       ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105"
                       : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
-                  }`}
+                    }`}
                 >
-                  {year}º Ano
+                  Todos
                 </button>
-              ))}
+
+                {availableYears
+                  .filter((year) => year <= 4) // Filtra apenas até o 4º ano
+                  .map((year) => (
+                    <button
+                      key={year}
+                      onClick={() => setSelectedYear(year)}
+                      className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${selectedYear === year
+                          ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105"
+                          : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
+                        }`}
+                    >
+                      {year}º Ano
+                    </button>
+                  ))}
+              </div>
+
+              {/* --- LINHA DE BAIXO (5º ao 9º) --- */}
+              <div className="flex flex-wrap justify-center gap-3">
+                {availableYears
+                  .filter((year) => year >= 5) // Filtra do 5º ano para cima
+                  .map((year) => (
+                    <button
+                      key={year}
+                      onClick={() => setSelectedYear(year)}
+                      className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${selectedYear === year
+                          ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105"
+                          : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
+                        }`}
+                    >
+                      {year}º Ano
+                    </button>
+                  ))}
+              </div>
+
             </div>
           </FadeIn>
 
@@ -136,10 +160,10 @@ export default function Praticas() {
 
                   <div className="flex items-center text-indigo-600 dark:text-indigo-400 font-bold text-xs tracking-widest pt-6 border-t border-slate-100 dark:border-slate-800 uppercase">
                     <span className="group-hover:mr-3 transition-all">Ver Detalhes</span>
-                    <svg 
-                      className="w-4 h-4 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
+                    <svg
+                      className="w-4 h-4 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -167,7 +191,7 @@ export default function Praticas() {
                 Não encontramos atividades para sua busca. Que tal tentar outro termo ou remover os filtros?
               </p>
               <button
-                onClick={() => {setSelectedYear(null); setSearchQuery("")}}
+                onClick={() => { setSelectedYear(null); setSearchQuery("") }}
                 className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-full hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20"
               >
                 Limpar Filtros

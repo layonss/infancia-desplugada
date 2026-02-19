@@ -57,24 +57,23 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                   { name: "Curadoria", path: "/curadoria" },
                   { name: "Sobre", path: "/sobre" },
                 ].map((link) => (
-  <Link
-    key={link.path}
-    href={link.path}
-    // Adicione 'group relative' aqui 👇
-    className={`group relative transition-colors duration-200 ${
-      isHome && !scrolled
-        ? "text-white/90 hover:text-white"
-        : isActive(link.path)
-        ? "text-indigo-600 dark:text-indigo-400 font-semibold"
-        : "text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400"
-    }`}
-  >
-    {link.name}
-    
-    {/* ADICIONE ESTE SPAN PARA O EFEITO DE LINHA 👇 */}
-    <span className={`absolute -bottom-1 left-0 h-0.5 bg-current transition-all duration-300 ease-out w-0 group-hover:w-full ${isActive(link.path) ? "w-full" : "w-0"}`} />
-  </Link>
-))}
+                  <Link
+                    key={link.path}
+                    href={link.path}
+                    // Adicione 'group relative' aqui 👇
+                    className={`group relative transition-colors duration-200 ${isHome && !scrolled
+                        ? "text-white/90 hover:text-white"
+                        : isActive(link.path)
+                          ? "text-indigo-600 dark:text-indigo-400 font-semibold"
+                          : "text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400"
+                      }`}
+                  >
+                    {link.name}
+
+                    {/* ADICIONE ESTE SPAN PARA O EFEITO DE LINHA 👇 */}
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-current transition-all duration-300 ease-out w-0 group-hover:w-full ${isActive(link.path) ? "w-full" : "w-0"}`} />
+                  </Link>
+                ))}
               </div>
 
               <div

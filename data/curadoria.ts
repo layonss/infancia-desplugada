@@ -37,7 +37,7 @@ export const recursos: Recurso[] = [
     titulo: "O que é Pensamento Computacional?",
     descricao: "Vídeo curto e didático explicando os pilares do pensamento computacional de forma ilustrada.",
     categoria: "Vídeo",
-    link: "https://www.youtube.com/", 
+    link: "https://www.youtube.com/",
     autor: "Canal TechEdu",
   },
   {

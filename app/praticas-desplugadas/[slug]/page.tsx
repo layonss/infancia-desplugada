@@ -34,7 +34,7 @@ export default async function PraticaDetalhe({ params }: PageProps) {
     // AJUSTE: Fundo agora muda no Dark Mode
     <section className="min-h-screen py-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500">
       <Container>
-        
+
         {/* Botão Voltar */}
         <FadeIn direction="down">
           <div className="mb-8">
@@ -42,10 +42,10 @@ export default async function PraticaDetalhe({ params }: PageProps) {
               href="/praticas-desplugadas"
               className="inline-flex items-center text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors group"
             >
-              <svg 
-                className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -56,10 +56,10 @@ export default async function PraticaDetalhe({ params }: PageProps) {
         </FadeIn>
 
         <div className="grid lg:grid-cols-3 gap-12 items-start">
-          
+
           {/* --- COLUNA PRINCIPAL --- */}
           <div className="lg:col-span-2 space-y-8">
-            
+
             {/* Cabeçalho */}
             <FadeIn>
               <div>
@@ -86,7 +86,7 @@ export default async function PraticaDetalhe({ params }: PageProps) {
                   </span>
                   Como aplicar a atividade
                 </h2>
-                
+
                 <div className="prose prose-slate dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
                   <p className="whitespace-pre-line">
                     {pratica.comoFunciona}
@@ -114,7 +114,7 @@ export default async function PraticaDetalhe({ params }: PageProps) {
 
           {/* --- SIDEBAR --- */}
           <aside className="space-y-6 lg:sticky lg:top-28">
-            
+
             {/* Card 1: Objetivos */}
             <FadeIn delay={0.3} direction="left">
               <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
