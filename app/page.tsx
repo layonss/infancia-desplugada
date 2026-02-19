@@ -34,13 +34,13 @@ export default function Home() {
             </h2>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-              Desenvolvendo o <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-300">
-                Pensamento Computacional
-              </span>
-              <br />
-              sem telas.
-            </h1>
+  Desenvolvendo o <br className="hidden md:block" />
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-300">
+    Pensamento <br /> Computacional
+  </span>
+  <br />
+  sem telas.
+</h1>
 
             <p className="text-lg md:text-xl text-slate-300 max-w-2xl mb-10 leading-relaxed md:leading-relaxed">
               Curadoria e desenvolvimento de práticas pedagógicas desplugadas para uma educação básica mais inclusiva e tangível.
