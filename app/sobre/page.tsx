@@ -66,7 +66,7 @@ export default function Sobre() {
           <div className="max-w-4xl mx-auto">
             {coordenacao.map((prof) => (
               <FadeIn key={prof.id} direction="up" delay={0.2}>
-                <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 md:p-10 shadow-xl border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div className="group flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_-5px_rgba(16,185,129,0.6)] dark:hover:shadow-[0_0_50px_-12px_rgba(99,102,241,0.3)] hover:border-emerald-400 dark:hover:border-indigo-500/30 relative z-10">
                   <ScaleIn delay={0.4}>
                     <div className="shrink-0">
                       <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-4xl font-bold border-4 border-white dark:border-slate-800 shadow-md">
@@ -127,7 +127,7 @@ export default function Sobre() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {pesquisadores.map((membro, index) => (
               <FadeIn key={membro.id} delay={index * 0.1} direction="up">
-                <div className="h-full bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-all duration-300 text-center group flex flex-col">
+                <div className="group flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_-5px_rgba(16,185,129,0.6)] dark:hover:shadow-[0_0_50px_-12px_rgba(99,102,241,0.3)] hover:border-emerald-400 dark:hover:border-indigo-500/30 relative z-10">
 
                   <ScaleIn delay={index * 0.1 + 0.2}>
                     <div className="w-20 h-20 mx-auto rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/30 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 text-xl font-bold mb-4 transition-colors">

@@ -26,12 +26,12 @@ export default async function PraticaDetalhe({ params }: PageProps) {
     notFound();
   }
 
-  const anosFormatados = pratica.anos.length === 1
-    ? `${pratica.anos[0]}º ano`
-    : `${Math.min(...pratica.anos)}º ao ${Math.max(...pratica.anos)}º ano`;
+  // AJUSTE: Nova formatação segura para strings (Textos e "Pré")
+  const anosFormatados = pratica.anos
+    .map((a) => (a.startsWith("Pré") ? a : `${a}º Ano`))
+    .join(" - ");
 
   return (
-    // AJUSTE: Fundo agora muda no Dark Mode
     <section className="min-h-screen py-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500">
       <Container>
 
@@ -63,9 +63,20 @@ export default async function PraticaDetalhe({ params }: PageProps) {
             {/* Cabeçalho */}
             <FadeIn>
               <div>
-                <span className="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-[10px] font-black uppercase tracking-widest rounded-full mb-4">
-                  {anosFormatados}
-                </span>
+                {/* Container flex para alinhar as tags lado a lado */}
+                <div className="flex flex-wrap gap-3 mb-4">
+                  <span className="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-[10px] font-black uppercase tracking-widest rounded-full">
+                    {anosFormatados}
+                  </span>
+                  
+                  {/* Tag da BNCC condicional (Só aparece se existir o código) */}
+                  {pratica.codigoBNCC && (
+                    <span className="inline-block px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-[10px] font-black uppercase tracking-widest rounded-full border border-emerald-200 dark:border-emerald-800">
+                      BNCC: {pratica.codigoBNCC}
+                    </span>
+                  )}
+                </div>
+
                 <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4">
                   {pratica.titulo}
                 </h1>

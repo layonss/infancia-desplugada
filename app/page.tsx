@@ -104,6 +104,13 @@ function FormularioFeedback() {
 }
 
 export default function Home() {
+  // Array com os níveis que estão visíveis no site atualmente
+  const niveisAtivos = ["Pré 1", "Pré 2", "1", "2", "3", "4", "5"];
+
+  // Filtra as práticas verificando se PELO MENOS UM (.some) dos anos da atividade está nos níveis ativos
+  const praticasAtivas = praticas.filter((pratica) =>
+    pratica.anos.some((ano) => niveisAtivos.includes(ano))
+  );
   return (
     <div className="flex flex-col">
 
@@ -369,7 +376,7 @@ export default function Home() {
             ">
               <ScaleIn delay={0.1}>
                 <p className="text-4xl md:text-5xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-3 transition-transform duration-300 group-hover:scale-105">
-                  +{praticas.length}
+                  +{praticasAtivas.length}
                 </p>
               </ScaleIn>
               <p className="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-wider">

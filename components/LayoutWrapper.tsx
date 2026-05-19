@@ -52,10 +52,12 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
               <div className="flex gap-6">
                 {[
-                  { name: "Artigos", path: "/artigos" },
                   { name: "Práticas", path: "/praticas-desplugadas" },
                   { name: "Curadoria", path: "/curadoria" },
+                  { name: "Artigos", path: "/artigos" },
+                  { name: "Documentos", path: "/documentos" },
                   { name: "Sobre", path: "/sobre" },
+                  
                 ].map((link) => (
                   <Link
                     key={link.path}

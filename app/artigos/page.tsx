@@ -98,7 +98,7 @@ export default function Artigos() {
               <FadeIn key={artigo.slug} delay={index * 0.05} direction="up">
                 <Link
                   href={`/artigos/${artigo.slug}`}
-                  className="group flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2 transition-all duration-300"
+                  className="group flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_-5px_rgba(16,185,129,0.6)] dark:hover:shadow-[0_0_50px_-12px_rgba(99,102,241,0.3)] hover:border-emerald-400 dark:hover:border-indigo-500/30 relative z-10"
                 >
                   <div className="flex items-center space-x-2 mb-6 text-[10px] font-black uppercase tracking-widest text-slate-400">
                     <span>{artigo.dataPublicacao}</span>

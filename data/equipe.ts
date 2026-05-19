@@ -12,7 +12,7 @@ export interface Membro {
 export const equipe: Membro[] = [
   {
     id: "1",
-    nome: "Prof. Dra. Jéssica Zacarias de Andrade",
+    nome: "Profa. Dra. Jéssica Zacarias de Andrade",
     funcao: "Coordenadora & Orientadora",
     bio: "Doutora em Educação pela PUC-Rio com estágio na Universidade de Lisboa. Professora do Programa de Pós-Graduação em Educação da Universidade Estácio de Sá (PPGE/UNESA). Atualmente lidera o projeto de pesquisa 'Infância (Des)Plugada: Computação com/para crianças na Educação Infantil', investigando práticas pedagógicas para o desenvolvimento do pensamento computacional na primeira infância.",
     foto: "/membros/jessica-andrade.jpg", // Nome sugerido para o arquivo
@@ -67,25 +67,7 @@ export const equipe: Membro[] = [
   },
   {
     id: "7",
-    nome: "Gabriel Moreno Felippe",
-    funcao: "Pesquisador (Pedagogia)",
-    bio: "Focado na análise pedagógica das atividades e adaptação para o ensino fundamental.",
-    foto: "/membros/seu-nome.jpg",
-    lattes: "#",
-    destaque: false,
-  },
-  {
-    id: "8",
     nome: "Júlia",
-    funcao: "Pesquisadora (Pedagogia)",
-    bio: "Focada na análise pedagógica das atividades e adaptação para o ensino fundamental.",
-    foto: "/membros/seu-nome.jpg",
-    lattes: "#",
-    destaque: false,
-  },
-  {
-    id: "9",
-    nome: "July",
     funcao: "Pesquisadora (Pedagogia)",
     bio: "Focada na análise pedagógica das atividades e adaptação para o ensino fundamental.",
     foto: "/membros/seu-nome.jpg",

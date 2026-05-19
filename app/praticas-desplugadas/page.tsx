@@ -9,22 +9,34 @@ import ScaleIn from "@/components/ScaleIn";
 import { praticas } from "@/data/praticas";
 
 export default function Praticas() {
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  // Alterado para aceitar strings, já que agora temos "Pré 1", "Pré 2", etc.
+  const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const availableYears = Array.from(
-    new Set(praticas.flatMap((p) => p.anos))
-  ).sort((a, b) => a - b);
+  // Categorias de filtros
+  const niveisInfantil = ["Pré 1", "Pré 2"];
+  const niveisFundamental1 = ["1", "2", "3", "4", "5"];
+  // const niveisFundamental2 = ["6", "7", "8", "9"];
+  
+  // Array unificado e escalável para renderizar os botões
+  const niveisAtivos = [...niveisInfantil, ...niveisFundamental1 /*, ...niveisFundamental2*/];
+  
+  // Níveis em descanso (Ensino Fundamental II)
+  // const niveisFundamental2 = ["6", "7", "8", "9"];
 
   const filteredPraticas = praticas.filter((p) => {
-    const matchYear = selectedYear ? p.anos.includes(selectedYear) : true;
+    // Agora verifica a string exata no array de anos/níveis da prática
+    const matchLevel = selectedLevel ? p.anos.includes(selectedLevel) : true;
+    
     const searchLower = searchQuery.toLowerCase();
     const matchText =
       p.titulo.toLowerCase().includes(searchLower) ||
       p.descricaoCurta.toLowerCase().includes(searchLower) ||
-      p.objetivos.some((obj) => obj.toLowerCase().includes(searchLower));
+      p.objetivos.some((obj) => obj.toLowerCase().includes(searchLower)) ||
+      // Permite que o usuário busque digitando o código exato da BNCC (ex: EI03CG05)
+      (p.codigoBNCC && p.codigoBNCC.toLowerCase().includes(searchLower));
 
-    return matchYear && matchText;
+    return matchLevel && matchText;
   });
 
   return (
@@ -58,7 +70,7 @@ export default function Praticas() {
               </div>
               <input
                 type="text"
-                placeholder="Busque por título, objetivo ou tema..."
+                placeholder="Busque por título, código BNCC ou tema..."
                 className="w-full pl-12 pr-6 py-4 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all text-slate-700 dark:text-slate-200 placeholder:text-slate-400"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -66,56 +78,36 @@ export default function Praticas() {
             </div>
           </FadeIn>
 
-          {/* 2. Filtros de Ano */}
+          {/* 2. Filtros de Ano e Etapas */}
           <FadeIn delay={0.2} direction="up">
-            {/* Container Flex Coluna para empilhar as duas linhas */}
-            <div className="flex flex-col items-center gap-3 mb-8">
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              
+              {/* Botão TODOS */}
+              <button
+                onClick={() => setSelectedLevel(null)}
+                className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
+                  selectedLevel === null
+                    ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105"
+                    : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
+                }`}
+              >
+                Todos
+              </button>
 
-              {/* --- LINHA DE CIMA (Todos + 1º ao 4º) --- */}
-              <div className="flex flex-wrap justify-center gap-3">
+              {/* Botões Escaláveis Mapeados */}
+              {niveisAtivos.map((level) => (
                 <button
-                  onClick={() => setSelectedYear(null)}
-                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${selectedYear === null
+                  key={level}
+                  onClick={() => setSelectedLevel(level)}
+                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
+                    selectedLevel === level
                       ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105"
                       : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
-                    }`}
+                  }`}
                 >
-                  Todos
+                  {level.includes("Pré") ? level : `${level}º Ano`}
                 </button>
-
-                {availableYears
-                  .filter((year) => year <= 4) // Filtra apenas até o 4º ano
-                  .map((year) => (
-                    <button
-                      key={year}
-                      onClick={() => setSelectedYear(year)}
-                      className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${selectedYear === year
-                          ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105"
-                          : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
-                        }`}
-                    >
-                      {year}º Ano
-                    </button>
-                  ))}
-              </div>
-
-              {/* --- LINHA DE BAIXO (5º ao 9º) --- */}
-              <div className="flex flex-wrap justify-center gap-3">
-                {availableYears
-                  .filter((year) => year >= 5) // Filtra do 5º ano para cima
-                  .map((year) => (
-                    <button
-                      key={year}
-                      onClick={() => setSelectedYear(year)}
-                      className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${selectedYear === year
-                          ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/30 scale-105"
-                          : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:text-indigo-600"
-                        }`}
-                    >
-                      {year}º Ano
-                    </button>
-                  ))}
-              </div>
+              ))}
 
             </div>
           </FadeIn>
@@ -138,18 +130,26 @@ export default function Praticas() {
               <FadeIn key={pratica.slug} delay={index * 0.05} direction="up">
                 <Link
                   href={`/praticas-desplugadas/${pratica.slug}`}
-                  className="group flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2 transition-all duration-300"
+                  // O AJUSTE DEFINITIVO: Sombra esmeralda mais densa (0.6 de opacidade), espalhada e com borda mais forte (emerald-400)
+                  className="group flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_-5px_rgba(16,185,129,0.6)] dark:hover:shadow-[0_0_50px_-12px_rgba(99,102,241,0.3)] hover:border-emerald-400 dark:hover:border-indigo-500/30 relative z-10"
                 >
-                  <div className="flex justify-between items-start mb-6">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     <ScaleIn delay={index * 0.05 + 0.2}>
                       <span className="inline-block text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 ring-1 ring-indigo-500/20">
-                        {pratica.anos.length === 1
-                          ? `${pratica.anos[0]}º ANO`
-                          : `${Math.min(...pratica.anos)}º - ${Math.max(...pratica.anos)}º ANO`}
+                        {pratica.anos.map(a => a.startsWith('Pré') ? a : `${a}º ANO`).join(' - ')}
                       </span>
                     </ScaleIn>
+                    
+                    {pratica.codigoBNCC && (
+                      <ScaleIn delay={index * 0.05 + 0.3}>
+                        <span className="inline-block text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 ring-1 ring-emerald-500/20">
+                          {pratica.codigoBNCC}
+                        </span>
+                      </ScaleIn>
+                    )}
                   </div>
 
+                 {/* Título: Voltou para o Indigo clássico no Light Mode */}
                   <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {pratica.titulo}
                   </h3>
@@ -158,7 +158,8 @@ export default function Praticas() {
                     {pratica.descricaoCurta}
                   </p>
 
-                  <div className="flex items-center text-indigo-600 dark:text-indigo-400 font-bold text-xs tracking-widest pt-6 border-t border-slate-100 dark:border-slate-800 uppercase">
+                  {/* Link "Ver Detalhes": Voltou para o Indigo no Light Mode */}
+                  <div className="flex items-center font-bold text-xs tracking-widest pt-6 border-t border-slate-100 dark:border-slate-800 uppercase text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     <span className="group-hover:mr-3 transition-all">Ver Detalhes</span>
                     <svg
                       className="w-4 h-4 opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
@@ -191,7 +192,7 @@ export default function Praticas() {
                 Não encontramos atividades para sua busca. Que tal tentar outro termo ou remover os filtros?
               </p>
               <button
-                onClick={() => { setSelectedYear(null); setSearchQuery("") }}
+                onClick={() => { setSelectedLevel(null); setSearchQuery("") }}
                 className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-full hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20"
               >
                 Limpar Filtros
